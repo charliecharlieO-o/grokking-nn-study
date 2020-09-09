@@ -1,5 +1,5 @@
 alpha = 0.1
-weight = 0.2
+weight = 0.2    # Usually called theta in GD
 goal_pred = 1
 input = 0.5
 
