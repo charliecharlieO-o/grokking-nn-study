@@ -35,20 +35,26 @@ win_or_lose_binary = [1, 1, 0, 1]
 
 true = win_or_lose_binary[0]
 input = [toes[0], wlrec[0], nfans[0]]
-pred = neural_network(input, weights)
-
-error = (pred - true) ** 2
-# Delta: A measure of how much higher or lower you want a node's value to be, to
-#        predict perfectly given the current training sample
-delta = pred - true
-# Weight Delta: A derivative-based estimate of the direction and amount you should
-#               move a weight to reduce node_delta, accounting for scaling, negative reversal and stopping.
-#               To get this you multiply delta by a weight's input
-weight_deltas = ele_mul(delta, input)
 
 alpha = 0.01
 
-for i in range(len(weights)):
-    weights[i] -= alpha * weight_deltas[i]
+for iter in range(3):
+
+    pred = neural_network(input, weights)
+
+    error = (pred - true) ** 2
+    delta = pred - true
+
+    weight_deltas = ele_mul(delta, input)
+
+    print("="*100)
+    print(f"Iteration: {iter + 1}")
+    print(f"Pred: {pred}")
+    print(f"Error: {error}")
+    print(f"Delta: {delta}")
     print(f"Weights: {weights}")
     print(f"Weight Deltas: {weight_deltas}")
+
+    # Update weights
+    for i in range(len(weights)):
+        weights[i] -= alpha * weight_deltas[i]
