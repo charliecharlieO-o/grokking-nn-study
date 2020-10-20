@@ -6,7 +6,7 @@ import numpy as np
 
 
 # NN Configs
-weights = np.array([0.5,0.48, -0.7])
+weights = np.array([0.5, 0.48, -0.7])
 alpha = 0.1
 
 streetlights = np.array([
